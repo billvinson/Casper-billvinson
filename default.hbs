@@ -97,6 +97,7 @@
     crossorigin="anonymous">
 </script>
 <script src="{{asset "built/casper.js"}}"></script>
+<script async src="{{asset 'js/fslightbox.js'}}"></script>
 <script>
 $(document).ready(function () {
     // Mobile Menu Trigger
@@ -106,6 +107,23 @@ $(document).ready(function () {
     // FitVids - Makes video embeds responsive
     $(".gh-content").fitVids();
 });
+</script>
+
+<script>
+const images = document.querySelectorAll('.kg-image-card img, .kg-gallery-card img, .article-image img');
+// Lightbox function
+images.forEach(function (image) {
+  var wrapper = document.createElement('a');
+  wrapper.setAttribute('data-no-swup', '');
+  wrapper.setAttribute('data-fslightbox', '');
+  wrapper.setAttribute('data-caption', image.getAttribute('alt'));
+  wrapper.setAttribute('href', image.src);
+  wrapper.setAttribute('aria-label', 'Click for Lightbox');
+  image.parentNode.insertBefore(wrapper, image.parentNode.firstChild);
+  wrapper.appendChild(image);
+});
+
+{{!-- refreshFsLightbox(); --}}
 </script>
 
 {{!-- Ghost outputs required functional scripts with this tag - it should always be the last thing before the closing body tag --}}
